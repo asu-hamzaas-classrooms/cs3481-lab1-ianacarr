@@ -3,8 +3,6 @@
 #include <string>
 #include "Tools.h"
 
-#include <iostream>
-
 /*
  * Hints/Notes:
  * 1) Pay attention to what the comments say. 
