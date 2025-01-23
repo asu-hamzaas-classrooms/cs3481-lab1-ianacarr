@@ -223,13 +223,13 @@ uint64_t Tools::clearBits(uint64_t source, int32_t low, int32_t high) {
  */
 uint64_t Tools::copyBits(uint64_t source, uint64_t dest, 
                          int32_t srclow, int32_t dstlow, int32_t length) {
-  uint64_t srchigh = srclow + length;
-  uint64_t dsthigh = dstlow + length;
+  uint64_t srchigh = srclow + length - 1;
+  uint64_t dsthigh = dstlow + length - 1;
 
   if (length <= 0 || srclow < 0 || dstlow < 0 || srchigh >= 64 || dsthigh >= 64) return dest;
 
-  uint64_t bits_to_copy = getBits(source, srclow, srchigh - 1) << dstlow;
-  uint64_t bits_to_set  = setBits(0, dstlow, dsthigh - 1);
+  uint64_t bits_to_copy = getBits(source, srclow, srchigh) << dstlow;
+  uint64_t bits_to_set  = setBits(0, dstlow, dsthigh);
 
   dest &= (~bits_to_set); // clear region
   dest |= bits_to_copy; // set region
